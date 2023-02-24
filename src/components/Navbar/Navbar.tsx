@@ -17,9 +17,9 @@ const Navbar: React.FC = () => {
           display={{ base: "none", md: "unset" }}
         />
       </Flex>
+      {/*<Directory />*/}
       <SearchInput />
       <RightContent user={user} />
-      {/*<Directory />*/}
     </Flex>
   );
 };
