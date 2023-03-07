@@ -3,6 +3,7 @@ import CreatePost from "@/components/Community/CreatePostLink";
 import Header from "@/components/Community/Header";
 import CommunityNotFound from "@/components/Community/NotFound";
 import PageContent from "@/components/Layout/PageContent";
+import Posts from "@/components/Posts/Posts";
 import { firestore } from "@/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
@@ -14,7 +15,7 @@ type CommunityPageProps = {
 };
 
 const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
-  console.log("here is the data", communityData);
+  //console.log("here is the data", communityData);
 
   if (!communityData) {
     return (
@@ -30,6 +31,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
       <PageContent>
         <>
           <CreatePost />
+          <Posts communityData={communityData} />
         </>
         <>
           <div>right</div>
