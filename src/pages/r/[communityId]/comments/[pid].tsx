@@ -1,7 +1,9 @@
 import { Post } from "@/atoms/postAtom";
+import About from "@/components/Community/About";
 import PageContent from "@/components/Layout/PageContent";
 import PostItem from "@/components/Posts/PostItem";
 import { auth, firestore } from "@/firebase/clientApp";
+import useCommunityData from "@/hooks/useCommunityData";
 import usePosts from "@/hooks/usePosts";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
@@ -13,6 +15,7 @@ const PostPage: React.FC = () => {
     usePosts();
   const router = useRouter();
   const [user] = useAuthState(auth);
+  const { communityStateValue } = useCommunityData();
 
   // When users are coming to an individual post not directly from the community page then we will query the db and get the post
   const fetchPost = async (postId: string) => {
@@ -57,7 +60,11 @@ const PostPage: React.FC = () => {
         )}
         {/* Comments */}
       </>
-      <>{/* About */}</>
+      <>
+        {communityStateValue.currentCommunity && (
+          <About communityData={communityStateValue.currentCommunity} />
+        )}
+      </>
     </PageContent>
   );
 };
